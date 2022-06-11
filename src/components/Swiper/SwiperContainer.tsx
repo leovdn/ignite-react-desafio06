@@ -2,11 +2,11 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination, Navigation } from "swiper"
 import SwiperItem, { SwiperItemProps } from "./SwiperItem"
 
-interface SwiperContainerProps {
+interface CarouselProps {
   data: SwiperItemProps[]
 }
 
-export default function SwiperContainer({ data }: SwiperContainerProps) {
+export default function Carousel({ data }: CarouselProps) {
   return (
     <Swiper
       slidesPerView={1}
@@ -23,6 +23,7 @@ export default function SwiperContainer({ data }: SwiperContainerProps) {
         <SwiperSlide key={item.title}>
           <SwiperItem
             title={item.title}
+            slug={item.slug}
             description={item.description}
             img={item.img}
           />
