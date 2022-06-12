@@ -2,6 +2,7 @@ import { Box, Divider, Flex, HStack, Image, Text } from "@chakra-ui/react"
 import Head from "next/head"
 import BannerPage from "../../components/BannerPage"
 import { Header } from "../../components/Header"
+import NumberHighlight from "../../components/NumberHighlight/NumberHighlight"
 
 export default function Continent() {
   const img =
@@ -30,26 +31,9 @@ export default function Continent() {
           </Text>
 
           <HStack flex="1" spacing="4rem" ml="4rem">
-            <Flex alignItems="center" flexDirection="column" fontWeight="600">
-              <Text color="highlight" fontSize="2rem">
-                50
-              </Text>
-              <Text>países</Text>
-            </Flex>
-
-            <Flex alignItems="center" flexDirection="column" fontWeight="600">
-              <Text color="highlight" fontSize="2rem">
-                60
-              </Text>
-              <Text>línguas</Text>
-            </Flex>
-
-            <Flex alignItems="center" flexDirection="column" fontWeight="600">
-              <Text color="highlight" fontSize="2rem">
-                27
-              </Text>
-              <Text>cidades +100</Text>
-            </Flex>
+            <NumberHighlight amount={50} subject="países" />
+            <NumberHighlight amount={60} subject="línguas" />
+            <NumberHighlight amount={27} subject="cidades +100" />
           </HStack>
         </Flex>
 
