@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination, Navigation } from "swiper"
-import SwiperItem, { SwiperItemProps } from "./SwiperItem"
+import CarouselItem, { CarouselItemProps } from "./CarouselItem"
 
 interface CarouselProps {
-  data: SwiperItemProps[]
+  data: CarouselItemProps[]
 }
 
 export default function Carousel({ data }: CarouselProps) {
@@ -21,7 +21,7 @@ export default function Carousel({ data }: CarouselProps) {
     >
       {data.map((item) => (
         <SwiperSlide key={item.title}>
-          <SwiperItem
+          <CarouselItem
             title={item.title}
             slug={item.slug}
             description={item.description}
