@@ -1,33 +1,35 @@
-import { Flex, Text } from "@chakra-ui/react"
+import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react"
 
 export default function BannerPage() {
   return (
     <Flex
-      height={500}
       w="100%"
-      _before={{
-        content: '""',
-        position: "absolute",
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1485081669829-bacb8c7bb1f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')",
-        width: "100%",
-        height: "500px",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        filter: "brightness(0.75)",
-      }}
+      h={["150px", "256px", "400px", "500px"]}
+      bgImage={`url('https://images.unsplash.com/photo-1485081669829-bacb8c7bb1f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')`}
+      bgPosition="center"
+      bgRepeat="no-repeat"
+      bgSize="cover"
     >
       <Flex
-        flex="1"
-        maxWidth={1160}
-        mx="auto"
-        px="2rem"
-        alignItems="end"
-        position="relative"
+        backdropFilter="brightness(0.65)"
+        w="100%"
+        h="100%"
+        align={["center", "center", "end"]}
+        justify={["center", "center", "start"]}
       >
-        <Text color="light.text" fontSize="3rem" fontWeight="700" mb="4rem">
+        <Heading
+          maxW={1160}
+          w="100%"
+          mx="auto"
+          px={["2rem"]}
+          pb={[0, 0, "1rem", "2rem"]}
+          textAlign={["center", "center", "left"]}
+          fontSize={["1.75rem", "2rem", "5xl"]}
+          color="gray.100"
+          fontWeight={["600", "600", "700"]}
+        >
           Europa
-        </Text>
+        </Heading>
       </Flex>
     </Flex>
   )
