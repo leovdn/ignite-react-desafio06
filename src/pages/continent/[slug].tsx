@@ -20,12 +20,22 @@ export default function Continent() {
       <Header />
       <BannerPage />
 
-      <Box p="2rem" maxWidth={1160} mx="auto" mt="5rem">
-        <Flex alignItems="center">
+      <Box
+        px="2rem"
+        maxWidth={1160}
+        mx="auto"
+        mt={["1.5rem", "2rem", "3rem", "5rem"]}
+      >
+        <Flex
+          alignItems={["flex-start", "flex-start", "center"]}
+          flexDirection={["column", "column", "row"]}
+          gap={["1rem", "1rem", "4rem"]}
+        >
           <Text
+            as="p"
             flex="1"
             color="dark.text"
-            fontSize="1.5rem"
+            fontSize={["0.875rem", "0.875rem", "1rem", "1.3rem"]}
             fontWeight="400"
             textAlign="justify"
           >
@@ -35,18 +45,29 @@ export default function Continent() {
             falados ao redor do mundo.
           </Text>
 
-          <HStack flex="1" spacing="4rem" ml="4rem">
+          <HStack flex="1" spacing={["2.5rem", "3rem", "4rem"]}>
             <NumberHighlight amount={50} subject="países" />
             <NumberHighlight amount={60} subject="línguas" />
             <NumberHighlight amount={27} subject="cidades +100" />
           </HStack>
         </Flex>
 
-        <Text color="dark.text" fontSize="2.25rem" fontWeight="500" mt="5rem">
+        <Text
+          fontSize={["1.5rem", "1.75rem", "2.25rem"]}
+          mt={["2rem", "3rem", "5rem"]}
+          color="dark.text"
+          fontWeight="500"
+        >
           Cidades +100
         </Text>
 
-        <Flex wrap="wrap" gap={8}>
+        <Flex
+          my={["1.25rem", "1.5rem", "2rem"]}
+          wrap="wrap"
+          gap={["1.25rem", "1.5rem"]}
+          flexDirection={["column", "column", "row"]}
+          align={["center", "center", "flex-start"]}
+        >
           <CityCard img={img} name="Veneza" country="Itália" flag={flag} />
           <CityCard img={img} name="Veneza" country="Itália" flag={flag} />
           <CityCard img={img} name="Veneza" country="Itália" flag={flag} />
