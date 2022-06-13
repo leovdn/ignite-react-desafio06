@@ -22,6 +22,9 @@ export const theme = extendTheme({
   },
   styles: {
     global: {
+      html: {
+        fontSize: "16px",
+      },
       body: {
         bg: "light.text",
         color: "dark.text",
