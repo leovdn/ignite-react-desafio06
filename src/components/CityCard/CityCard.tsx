@@ -9,14 +9,14 @@ interface CityCardProps {
 
 export default function CityCard({ name, country, img, flag }: CityCardProps) {
   return (
-    <Flex flexDirection="column" w={256} mt="2.5rem">
+    <Flex flexDirection="column" w={256}>
       <Image src={img} borderRadius="4px 4px 0 0" />
       <Flex
         maxH="280px"
         bg="light.white"
-        p="1.5rem"
+        p={["1.125rem 1.5rem 1.5rem"]}
+        alignItems="center"
         justifyContent="space-between"
-        alignContent="center"
         borderBottom="1px"
         borderLeft="1px"
         borderRight="1px"
@@ -24,13 +24,20 @@ export default function CityCard({ name, country, img, flag }: CityCardProps) {
         borderRadius="0 0 4px 4px"
       >
         <Box>
-          <Text fontWeight="600" fontSize="1.25rem">
+          <Text as="strong" fontWeight="600" fontSize="1.25rem">
             {name}
           </Text>
-          <Text fontWeight="500" fontSize="1rem" color="dark.info">
+          <Text
+            as="p"
+            mt="0.75rem"
+            fontWeight="500"
+            fontSize="1rem"
+            color="dark.info"
+          >
             {country}
           </Text>
         </Box>
+
         <Image boxSize="30px" src={flag} borderRadius="full" />
       </Flex>
     </Flex>
