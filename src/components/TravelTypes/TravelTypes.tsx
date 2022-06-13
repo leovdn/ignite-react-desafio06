@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Image, Text } from "@chakra-ui/react"
+import { Box, Flex, HStack, Image, SimpleGrid, Text } from "@chakra-ui/react"
 import TravelTypesItem from "./TravelTypesItem"
 
 const types = [
@@ -27,9 +27,19 @@ const types = [
 export default function TravelTypes() {
   return (
     <Box mt={["2.25rem", "3rem", "4.5rem"]}>
-      <HStack justifyContent="space-between" fontWeight={600} fontSize="1.5rem">
+      <SimpleGrid
+        justifyContent="space-between"
+        gridTemplateColumns={[
+          "repeat(2, 1fr)",
+          "repeat(3, 1fr)",
+          "repeat(5, 1fr)",
+        ]}
+        justifyItems={["start", "center", "center"]}
+        fontWeight={600}
+        fontSize="1.5rem"
+      >
         <TravelTypesItem itens={types} />
-      </HStack>
+      </SimpleGrid>
     </Box>
   )
 }
