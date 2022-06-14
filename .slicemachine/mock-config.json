@@ -1,0 +1,72 @@
+{
+  "_cts": {
+    "continent": {
+      "banner": {
+        "content": "https://images.unsplash.com/photo-1604537529428-15bcbeecfe4d"
+      },
+      "info": {
+        "desc": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        },
+        "CountriesTopCities": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        }
+      },
+      "cities": {
+        "cityName": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        },
+        "cityCountry": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        }
+      }
+    },
+    "home": {
+      "banner": {
+        "title": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        },
+        "description": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        }
+      }
+    }
+  },
+  "slices": {
+    "ContinentPage": {
+      "default": {
+        "primary": {
+          "title": {
+            "config": {
+              "patternType": "PARAGRAPH",
+              "blocks": 1
+            }
+          }
+        }
+      }
+    },
+    "ContinentInfo": {
+      "default": {
+        "primary": {}
+      }
+    }
+  }
+}
