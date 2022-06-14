@@ -17,6 +17,7 @@ export default function Continent() {
       <Head>
         <title>Worldtrip | Europa</title>
       </Head>
+
       <Header />
       <BannerPage />
 

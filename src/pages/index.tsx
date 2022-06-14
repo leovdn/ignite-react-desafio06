@@ -17,7 +17,7 @@ const Home: NextPage = () => {
         <title>Worldtrip | Faça sua viagem</title>
       </Head>
 
-      <Header />
+      <Header isHome />
 
       <BannerHome />
 
