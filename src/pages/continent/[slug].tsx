@@ -1,16 +1,23 @@
 import { Box, Divider, Flex, HStack, Image, Text } from "@chakra-ui/react"
+import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
+import { useEffect } from "react"
+import { createClient } from "../../../prismicio"
+import { ContinentInfo, ContinentPage } from "../../../slices"
 import BannerPage from "../../components/BannerPage"
 import CityCard from "../../components/CityCard/CityCard"
 import { Header } from "../../components/Header"
 import NumberHighlight from "../../components/NumberHighlight/NumberHighlight"
+import { getPrismicClient } from "../../services/prismic"
 
-export default function Continent() {
+export default function Continent(props) {
   const img =
     "https://images.unsplash.com/photo-1533676802871-eca1ae998cd5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1933&q=80"
 
   const flag =
     "https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg"
+
+  console.log(props)
 
   return (
     <Box>
@@ -77,4 +84,20 @@ export default function Continent() {
       </Box>
     </Box>
   )
+}
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  }
+}
+
+export async function getStaticProps({ previewData }: any) {
+  const prismic = getPrismicClient({ previewData })
+  const page = await prismic.getByType("continent")
+
+  return {
+    props: { page }, // Will be passed to the page component as props
+  }
 }
