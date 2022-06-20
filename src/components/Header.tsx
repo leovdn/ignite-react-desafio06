@@ -7,7 +7,6 @@ interface HeaderProps {
 
 export function Header({ isHome }: HeaderProps): JSX.Element {
   const router = useRouter()
-  console.log(router)
   return (
     <Flex
       maxW={1160}

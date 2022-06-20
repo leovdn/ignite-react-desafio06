@@ -1,0 +1,120 @@
+{
+  "id": "continent",
+  "label": "Continents page",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "continents": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "Continent Id",
+          "placeholder": ""
+        }
+      },
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "banner": {
+        "type": "Image",
+        "config": {
+          "label": "Banner",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "info": {
+        "type": "Group",
+        "config": {
+          "label": "Info",
+          "fields": {
+            "desc": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Descrição do Continente",
+                "placeholder": "Descrição do Continente",
+                "allowTargetBlank": true,
+                "single": "paragraph,em,strong"
+              }
+            },
+            "countriesNumber": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Countries Number",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+              }
+            },
+            "countriesLanguages": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Countries Languages",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+              }
+            },
+            "CountriesTopCities": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Countries Top Cities",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
+              }
+            }
+          }
+        }
+      },
+      "cities": {
+        "type": "Group",
+        "config": {
+          "label": "Cities",
+          "fields": {
+            "cityImage": {
+              "type": "Image",
+              "config": {
+                "label": "City Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "cityName": {
+              "type": "StructuredText",
+              "config": {
+                "label": "City Name",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "single": "strong"
+              }
+            },
+            "cityCountry": {
+              "type": "StructuredText",
+              "config": {
+                "label": "City Country",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            },
+            "countryFlag": {
+              "type": "Image",
+              "config": {
+                "label": "Country Flag",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

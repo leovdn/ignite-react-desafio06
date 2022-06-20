@@ -1,24 +1,56 @@
 import { Box, Divider, Flex, HStack, Image, Text } from "@chakra-ui/react"
+import { PrismicRichText } from "@prismicio/react"
+import * as PrismicH from "@prismicio/helpers"
+import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
+import { useEffect } from "react"
+import { createClient } from "../../../prismicio"
+import { ContinentInfo, ContinentPage } from "../../../slices"
 import BannerPage from "../../components/BannerPage"
 import CityCard from "../../components/CityCard/CityCard"
 import { Header } from "../../components/Header"
 import NumberHighlight from "../../components/NumberHighlight/NumberHighlight"
+import { getPrismicClient } from "../../services/prismic"
 
-export default function Continent() {
-  const img =
-    "https://images.unsplash.com/photo-1533676802871-eca1ae998cd5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1933&q=80"
+type ImageProps = {
+  alt: string
+  url: string
+}
 
-  const flag =
-    "https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg"
+type ContinentInfoProps = {
+  description: string
+  languagesAmount: string
+  topCitiesAmount: string
+  coutriesAmount: string
+}
+
+interface CityProps {
+  name: string
+  country: string
+  flag: ImageProps
+  image: ImageProps
+}
+interface ContinentProps {
+  continent: {
+    slug: string
+    title: string
+    banner: ImageProps
+    cities: CityProps[]
+    info: ContinentInfoProps[]
+  }
+}
+
+export default function Continent({ continent }: ContinentProps) {
+  console.log(continent)
 
   return (
     <Box>
       <Head>
-        <title>Worldtrip | Europa</title>
+        <title>Worldtrip | {continent.title}</title>
       </Head>
 
       <Header />
+
       <BannerPage />
 
       <Box
@@ -40,16 +72,22 @@ export default function Continent() {
             fontWeight="400"
             textAlign="justify"
           >
-            Apesar de não contar com um território muito extenso, a Europa é um
-            continente que possui grande influência social e cultural nos demais
-            continentes, afinal foi lá que surgiram os principais idiomas
-            falados ao redor do mundo.
+            {continent.info[0].description}
           </Text>
 
           <HStack flex="1" spacing={["2.5rem", "3rem", "4rem"]}>
-            <NumberHighlight amount={50} subject="países" />
-            <NumberHighlight amount={60} subject="línguas" />
-            <NumberHighlight amount={27} subject="cidades +100" />
+            <NumberHighlight
+              amount={continent.info[0].coutriesAmount}
+              subject="países"
+            />
+            <NumberHighlight
+              amount={continent.info[0].languagesAmount}
+              subject="línguas"
+            />
+            <NumberHighlight
+              amount={continent.info[0].topCitiesAmount}
+              subject="cidades +100"
+            />
           </HStack>
         </Flex>
 
@@ -69,12 +107,55 @@ export default function Continent() {
           flexDirection={["column", "column", "row"]}
           align={["center", "center", "flex-start"]}
         >
-          <CityCard img={img} name="Veneza" country="Itália" flag={flag} />
-          <CityCard img={img} name="Veneza" country="Itália" flag={flag} />
-          <CityCard img={img} name="Veneza" country="Itália" flag={flag} />
-          <CityCard img={img} name="Veneza" country="Itália" flag={flag} />
+          {continent.cities.map((city) => (
+            <CityCard
+              key={city.name}
+              img={city.image.url}
+              name={city.name}
+              country={city.country}
+              flag={city.flag.url}
+            />
+          ))}
         </Flex>
       </Box>
     </Box>
   )
+}
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  }
+}
+
+export async function getStaticProps({ params }: any) {
+  const prismic = getPrismicClient({})
+  const response = await prismic.getByUID("continent", String(params.slug), {})
+
+  const continent = {
+    slug: response.uid,
+    title: PrismicH.asText(response.data.title),
+    banner: response.data.banner,
+    info: response.data.info.map((city) => {
+      return {
+        topCitiesAmount: PrismicH.asText(city.CountriesTopCities),
+        languagesAmount: PrismicH.asText(city.countriesLanguages),
+        coutriesAmount: PrismicH.asText(city.countriesNumber),
+        description: PrismicH.asText(city.desc),
+      }
+    }),
+    cities: response.data.cities.map((city) => {
+      return {
+        image: city.cityImage,
+        name: PrismicH.asText(city.cityName),
+        country: PrismicH.asText(city.cityCountry),
+        flag: city.countryFlag,
+      }
+    }),
+  }
+
+  return {
+    props: { continent }, // Will be passed to the page component as props
+  }
 }
