@@ -45,6 +45,40 @@
             }
           }
         }
+      },
+      "travelTypes": {
+        "type": "Group",
+        "config": {
+          "label": "Travel Types",
+          "fields": {
+            "icon": {
+              "type": "Image",
+              "config": {
+                "label": "Icon",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Description",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            }
+          }
+        }
+      },
+      "carouselHeading": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Carousel Heading",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "heading1,heading2,heading3,heading4,strong,em"
+        }
       }
     }
   }
