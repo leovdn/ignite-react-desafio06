@@ -61,7 +61,8 @@
           "patternType": "HEADING",
           "blocks": 1
         }
-      }
+      },
+      "carousel": {}
     }
   },
   "slices": {
