@@ -56,7 +56,7 @@
           }
         }
       },
-      "carouselHeading": {
+      "carouselHeadingTitle": {
         "config": {
           "patternType": "HEADING",
           "blocks": 1
