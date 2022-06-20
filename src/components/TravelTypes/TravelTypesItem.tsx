@@ -1,15 +1,7 @@
-import { Box, Flex, Image, Text, useBreakpointValue } from "@chakra-ui/react"
+import { Flex, Image, Text, useBreakpointValue } from "@chakra-ui/react"
+import { TravelItems } from "./TravelTypes"
 
-interface TravelTypesItemProps {
-  icon: string
-  description: string
-}
-
-interface TravelTypesDataProps {
-  itens: TravelTypesItemProps[]
-}
-
-export default function TravelTypesItem({ itens }: TravelTypesDataProps) {
+export default function TravelTypesItem({ types }: TravelItems) {
   const isMobile = useBreakpointValue({
     base: false,
     md: true,
@@ -17,9 +9,9 @@ export default function TravelTypesItem({ itens }: TravelTypesDataProps) {
 
   return (
     <>
-      {itens.map((item) => (
+      {types.map((item) => (
         <Flex
-          key={item.icon}
+          key={item.icon.url}
           flexDirection="column"
           alignItems="center"
           gap="1.5rem"
@@ -32,7 +24,7 @@ export default function TravelTypesItem({ itens }: TravelTypesDataProps) {
             },
           ]}
         >
-          <Image src={item.icon} w={[0, 0, "64px", "80px"]} />
+          <Image src={item.icon.url} w={[0, 0, "64px", "80px"]} />
           <Flex gap="8px">
             {!isMobile && <Text color="highlight">•</Text>}
             <Text

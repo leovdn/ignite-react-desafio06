@@ -47,7 +47,22 @@
             "blocks": 1
           }
         }
-      }
+      },
+      "travelTypes": {
+        "description": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        }
+      },
+      "carouselHeadingTitle": {
+        "config": {
+          "patternType": "HEADING",
+          "blocks": 1
+        }
+      },
+      "carousel": {}
     }
   },
   "slices": {

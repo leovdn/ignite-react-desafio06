@@ -1,6 +1,6 @@
 import { Box, Divider, Text } from "@chakra-ui/react"
-
-import type { GetStaticProps, NextPage } from "next"
+import * as PrismicH from "@prismicio/helpers"
+import type { GetStaticProps } from "next"
 import { Header } from "../components/Header"
 import BannerHome from "../components/BannerHome"
 import TravelTypes from "../components/TravelTypes/TravelTypes"
@@ -8,11 +8,41 @@ import { continentsBanner } from "../utils/continentsBanner"
 import Head from "next/head"
 import Carousel from "../components/Carousel/CarouselContainer"
 import { getPrismicClient } from "../services/prismic"
+import { CarouselProps } from "../components/Carousel/CarouselItem"
 
-const Home: NextPage = (props) => {
+export type ImageProps = {
+  alt: string
+  url: string
+}
+
+export type BannerProps = {
+  bg: ImageProps
+  title: string
+  description: string
+}
+
+export type TravelTypeProps = {
+  icon: ImageProps
+  description: string
+}
+
+interface HomeResponseProps {
+  slug: string
+  banner: BannerProps[]
+  travelTypes: TravelTypeProps[]
+  carouselHeadingTitle: string
+  carouselHeadingSubtitle: string
+  carousel: CarouselProps[]
+}
+
+interface HomePageProps {
+  home: HomeResponseProps
+}
+
+const Home = ({ home }: HomePageProps) => {
   const continentsMock = continentsBanner
 
-  console.log(props)
+  console.log(home)
   return (
     <Box>
       <Head>
@@ -21,10 +51,14 @@ const Home: NextPage = (props) => {
 
       <Header isHome />
 
-      <BannerHome />
+      <BannerHome
+        bg={home.banner[0].bg}
+        title={home.banner[0].title}
+        description={home.banner[0].description}
+      />
 
       <Box px={["1rem", "1.5rem"]} maxWidth={1160} mx="auto">
-        <TravelTypes />
+        <TravelTypes types={home.travelTypes} />
 
         <Divider
           borderColor="dark.text"
@@ -40,15 +74,15 @@ const Home: NextPage = (props) => {
           fontWeight="500"
           mt={["1.5rem", "2rem", "3rem", "3.5rem"]}
         >
-          Vamos nessa? <br />
-          Então escolha seu continente
+          {home.carouselHeadingTitle} <br />
+          {home.carouselHeadingSubtitle}
         </Text>
 
         <Box
           h={["250px", "300px", "400px", "450px"]}
           my={["1.25rem", "1.5rem", "2.25rem", "3.2rem"]}
         >
-          <Carousel data={continentsMock} />
+          <Carousel data={home.carousel} />
         </Box>
       </Box>
     </Box>
@@ -59,18 +93,42 @@ export default Home
 
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient({})
-  const continentsResponse = await prismic.getByType("home")
+  const homeResponse = await prismic.getByUID("home", "home")
 
-  const continents = continentsResponse.results.map((continent) => {
-    return {
-      slug: continent.uid,
-      data: continent.data.banner,
-    }
-  })
+  const home = {
+    slug: homeResponse.uid,
+    banner: homeResponse.data.banner.map((banner) => {
+      return {
+        bg: banner.image,
+        title: PrismicH.asText(banner.title),
+        description: PrismicH.asText(banner.description),
+      }
+    }),
+    travelTypes: homeResponse.data.travelTypes.map((type) => {
+      return {
+        icon: type.icon,
+        description: PrismicH.asText(type.description),
+      }
+    }),
+    carouselHeadingTitle: PrismicH.asText(
+      homeResponse.data.carouselHeadingTitle
+    ),
+    carouselHeadingSubtitle: PrismicH.asText(
+      homeResponse.data.carouselHeadingSubtitle
+    ),
+    carousel: homeResponse.data.carousel.map((continent) => {
+      return {
+        slug: continent.slug,
+        title: PrismicH.asText(continent.title),
+        subtitle: PrismicH.asText(continent.subtitle),
+        image: continent.image,
+      }
+    }),
+  }
 
   return {
     props: {
-      continents,
+      home: home,
     },
     revalidate: 1800, //30 minutos
   }
