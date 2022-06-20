@@ -51,7 +51,7 @@ export default function Continent({ continent }: ContinentProps) {
 
       <Header />
 
-      <BannerPage />
+      <BannerPage banner={continent.banner.url} />
 
       <Box
         px="2rem"

@@ -1,11 +1,15 @@
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react"
 
-export default function BannerPage() {
+interface BannerPageProps {
+  banner: string
+}
+
+export default function BannerPage({ banner }: BannerPageProps) {
   return (
     <Flex
       w="100%"
       h={["150px", "256px", "400px", "500px"]}
-      bgImage={`url('https://images.unsplash.com/photo-1485081669829-bacb8c7bb1f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')`}
+      bgImage={`url(${banner})`}
       bgPosition="center"
       bgRepeat="no-repeat"
       bgSize="cover"
