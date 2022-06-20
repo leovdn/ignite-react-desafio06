@@ -1,30 +1,12 @@
-import { Box, Flex, HStack, Image, SimpleGrid, Text } from "@chakra-ui/react"
+import { Box, SimpleGrid } from "@chakra-ui/react"
+import { TravelTypeProps } from "../../pages"
 import TravelTypesItem from "./TravelTypesItem"
 
-const types = [
-  {
-    icon: "/assets/cocktail.svg",
-    description: "vida noturna",
-  },
-  {
-    icon: "/assets/surf.svg",
-    description: "praia",
-  },
-  {
-    icon: "/assets/building.svg",
-    description: "moderno",
-  },
-  {
-    icon: "/assets/museum.svg",
-    description: "clássico",
-  },
-  {
-    icon: "/assets/earth.svg",
-    description: "e mais...",
-  },
-]
+export interface TravelItems {
+  types: TravelTypeProps[]
+}
 
-export default function TravelTypes() {
+export default function TravelTypes({ types }: TravelItems) {
   return (
     <Box mt={["2.25rem", "3rem", "4.5rem"]}>
       <SimpleGrid
@@ -38,7 +20,7 @@ export default function TravelTypes() {
         fontWeight={600}
         fontSize="1.5rem"
       >
-        <TravelTypesItem itens={types} />
+        <TravelTypesItem types={types} />
       </SimpleGrid>
     </Box>
   )
