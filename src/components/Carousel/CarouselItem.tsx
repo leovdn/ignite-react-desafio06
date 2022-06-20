@@ -1,17 +1,18 @@
 import { Box, Image, Link, Text } from "@chakra-ui/react"
+import { ImageProps } from "../../pages"
 
-export interface CarouselItemProps {
-  title: string
+export type CarouselItemProps = {
   slug: string
-  description: string
-  img: string
+  title: string
+  subtitle: string
+  image: ImageProps
 }
 
 export default function CarouselItem({
-  title,
   slug,
-  description,
-  img,
+  title,
+  subtitle,
+  image,
 }: CarouselItemProps) {
   return (
     <Link
@@ -20,12 +21,12 @@ export default function CarouselItem({
       justifyContent="center"
       alignItems="center"
     >
-      <Image filter="brightness(0.6)" src={img} />
+      <Image filter="brightness(0.6)" src={image.url} />
 
       <Box position="absolute" color="light.text" fontWeight="700">
         <Text fontSize={["1.5rem", "2rem", "2.25rem", "3rem"]}>{title}</Text>
         <Text fontSize={["0.875rem", "1rem", "1.25rem", "1.5rem"]}>
-          {description}
+          {subtitle}
         </Text>
       </Box>
     </Link>

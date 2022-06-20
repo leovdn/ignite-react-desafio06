@@ -8,8 +8,9 @@ import { continentsBanner } from "../utils/continentsBanner"
 import Head from "next/head"
 import Carousel from "../components/Carousel/CarouselContainer"
 import { getPrismicClient } from "../services/prismic"
+import { CarouselProps } from "../components/Carousel/CarouselItem"
 
-type ImageProps = {
+export type ImageProps = {
   alt: string
   url: string
 }
@@ -31,6 +32,7 @@ interface HomeResponseProps {
   travelTypes: TravelTypeProps[]
   carouselHeadingTitle: string
   carouselHeadingSubtitle: string
+  carousel: CarouselProps[]
 }
 
 interface HomePageProps {
@@ -80,7 +82,7 @@ const Home = ({ home }: HomePageProps) => {
           h={["250px", "300px", "400px", "450px"]}
           my={["1.25rem", "1.5rem", "2.25rem", "3.2rem"]}
         >
-          <Carousel data={continentsMock} />
+          <Carousel data={home.carousel} />
         </Box>
       </Box>
     </Box>
@@ -114,11 +116,19 @@ export const getStaticProps: GetStaticProps = async () => {
     carouselHeadingSubtitle: PrismicH.asText(
       homeResponse.data.carouselHeadingSubtitle
     ),
+    carousel: homeResponse.data.carousel.map((continent) => {
+      return {
+        slug: continent.slug,
+        title: PrismicH.asText(continent.title),
+        subtitle: PrismicH.asText(continent.subtitle),
+        image: continent.image,
+      }
+    }),
   }
 
   return {
     props: {
-      home,
+      home: home,
     },
     revalidate: 1800, //30 minutos
   }
