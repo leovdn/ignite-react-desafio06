@@ -1,9 +1,13 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react"
+import { BannerProps } from "../pages"
 
-export default function BannerHome() {
+export default function BannerHome({ bg, description, title }: BannerProps) {
+  const titleFormatted = title.split("\n")
+  const descriptionFormatted = description.split("\\n")
+
   return (
     <Box
-      bgImage="url('/assets/bg.png')"
+      bgImage={`url(${bg.url})`}
       maxH={["160px", "256px", "400px", "500px"]}
       bgPosition="center"
       bgRepeat="no-repeat"
@@ -24,7 +28,8 @@ export default function BannerHome() {
             fontSize={["1.25rem", "1.5rem", "1.75rem", "2.25rem"]}
             color="light.text"
           >
-            5 Continentes, <br /> infinitas possibilidades.
+            {titleFormatted[0]} <br />
+            {titleFormatted[1]}
           </Text>
           <Box
             color="light.info"
@@ -32,9 +37,9 @@ export default function BannerHome() {
             mt=".5rem"
           >
             <Text display={["inline", "inline", "block"]}>
-              Chegou a hora de tirar do papel a viagem que você{" "}
+              {descriptionFormatted[0]}
             </Text>
-            <Text display={["inline-block"]}>sempre sonhou.</Text>
+            <Text display={["inline-block"]}>{descriptionFormatted[1]}</Text>
           </Box>
         </Box>
 

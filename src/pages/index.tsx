@@ -14,7 +14,7 @@ type ImageProps = {
   url: string
 }
 
-type BannerProps = {
+export type BannerProps = {
   bg: ImageProps
   title: string
   description: string
@@ -49,7 +49,11 @@ const Home = ({ home }: HomePageProps) => {
 
       <Header isHome />
 
-      <BannerHome />
+      <BannerHome
+        bg={home.banner[0].bg}
+        title={home.banner[0].title}
+        description={home.banner[0].description}
+      />
 
       <Box px={["1rem", "1.5rem"]} maxWidth={1160} mx="auto">
         <TravelTypes types={home.travelTypes} />
