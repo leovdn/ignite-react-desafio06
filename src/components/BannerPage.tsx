@@ -1,15 +1,16 @@
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react"
 
 interface BannerPageProps {
-  banner: string
+  name: string
+  image: string
 }
 
-export default function BannerPage({ banner }: BannerPageProps) {
+export default function BannerPage({ image, name }: BannerPageProps) {
   return (
     <Flex
       w="100%"
       h={["150px", "256px", "400px", "500px"]}
-      bgImage={`url(${banner})`}
+      bgImage={`url(${image})`}
       bgPosition="center"
       bgRepeat="no-repeat"
       bgSize="cover"
@@ -32,7 +33,7 @@ export default function BannerPage({ banner }: BannerPageProps) {
           color="gray.100"
           fontWeight={["600", "600", "700"]}
         >
-          Europa
+          {name}
         </Heading>
       </Flex>
     </Flex>

@@ -10,7 +10,7 @@ interface CityCardProps {
 export default function CityCard({ name, country, img, flag }: CityCardProps) {
   return (
     <Flex flexDirection="column" w={256}>
-      <Image src={img} borderRadius="4px 4px 0 0" />
+      <Image src={img} borderRadius="4px 4px 0 0" h={170} objectFit="cover" />
       <Flex
         maxH="280px"
         bg="light.white"
